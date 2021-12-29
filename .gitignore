@@ -1,0 +1,6 @@
+//git ignore dev
+//greyed
+
+Config/dev.js
+
+node_modules/
