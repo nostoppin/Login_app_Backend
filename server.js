@@ -1,5 +1,7 @@
-const express = require("express");
 //acq pkg
+const express = require("express");
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/test');
 
 const app = express();
 const port = 12233;
@@ -9,7 +11,7 @@ const port = 12233;
 app.get('/auth', async (request, response) =>
 {
     console.log(request.query);
-    response.send("hello " + request.query.userid + "!!");
+    response.send("hello !!");
 });
 
 //console.log("Hello Himadri");
