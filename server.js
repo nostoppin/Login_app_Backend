@@ -19,23 +19,24 @@ const port = 12233;
 
 app.get('/account', async (request, response) =>
 {
-    const {username, password} = request.query
+    const {r_username, r_password} = request.query
 
-    if(username == null || password == null)
+    if(r_username == null || r_password == null)
     {
         response.send("INVALID CREDENTIALS");
         return;
     }
 
-    var userAccount = Account.findOne(x => x.username == username)
-    if(username == null)
+    var userAccount = await account.findOne({username: r_username})
+    
+    if(r_username == null)
     {
         console.log("create account here");
 
-        var newAccount = new Account
+        var newAccount = new account
         ({
-            username : username,
-            password : password,
+            username : r_username,
+            password : r_password,
 
             lastAuthDate : Date.now()
         });
@@ -47,16 +48,23 @@ app.get('/account', async (request, response) =>
     }
     else
     {
-        if(password == userAccount)
+        if(r_password == userAccount.password)
         {
+            userAccount.lastAuthDate = Date.now();
+            await userAccount.save(); 
 
+            response.send(userAccount);
+            return;
         }
     }
+
+    response.send("invalid cred");
+    return;
 });
 
 //console.log("Hello Himadri");
 
 app.listen(keys.port, () =>
 {
-    //console.log("Hello Roy")
+    console.log("Listening on server:" + keys.port);
 });
