@@ -1,6 +1,6 @@
 //acq pkg
 const express = require("express");
-const res = require("express/lib/response");
+const response = require("express/lib/response");
 const mongoose = require('mongoose');
 const keys = require('./Config/keys');
 
