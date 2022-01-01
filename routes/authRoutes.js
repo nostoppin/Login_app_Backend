@@ -18,7 +18,7 @@ module.exports = app =>
         
         if(userAccount == null)
         {
-            console.log("create account here");
+            console.log("Account creation part");
     
             var newAccount = new account
             ({
@@ -40,7 +40,9 @@ module.exports = app =>
                 userAccount.lastAuthDate = Date.now();
                 await userAccount.save(); 
     
-                response.send(userAccount);
+                //response.send("Authentication Success");
+                //send back to user_page (current)
+                response.send(userAccount + "Authentication Success");
                 return;
             }
         }

@@ -20,7 +20,7 @@ public class LoginLink : MonoBehaviour
     private IEnumerator m_try_logIn()
     {
         g_username = g_username_inputField.text;
-        g_password = g_username_inputField.text;
+        g_password = g_password_inputField.text;
 
         UnityWebRequest request = UnityWebRequest.Get($"{g_auth_endPoint}?r_username={g_username}&r_password={g_password}");
         var handler = request.SendWebRequest();
@@ -31,7 +31,7 @@ public class LoginLink : MonoBehaviour
         {
             start_time += Time.deltaTime;
 
-            if(start_time > 10f)
+            if(start_time > 5f)
             {
                 break;
             }
@@ -46,7 +46,7 @@ public class LoginLink : MonoBehaviour
         {
             Debug.Log("Unable to connect, try again later");
         }
-        print(g_username + " " + g_password);
+        print(g_username+" "+g_password);
 
         yield return null;
     }
