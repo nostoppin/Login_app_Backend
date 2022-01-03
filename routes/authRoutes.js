@@ -47,7 +47,7 @@ module.exports = app =>
             }
         }
     
-        response.send("Invalid Credentials");
+        response.send("wrong password");
         return;
     });
 }
