@@ -620,11 +620,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a6e113ccefbfc46a538a76c84c1e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  g_auth_endPoint: http://localhost:12233/account
+  g_auth_endPoint: http://localhost:12233/account/login
+  g_creation_endPoint: http://localhost:12233/account/create
   g_username_inputField: {fileID: 1783583182}
   g_password_inputField: {fileID: 1889779634}
   g_alertText: {fileID: 160295775}
   g_loginButton: {fileID: 1165064620}
+  g_createButton: {fileID: 194522028}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
