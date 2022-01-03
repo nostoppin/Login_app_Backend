@@ -36,9 +36,15 @@ module.exports = app =>
 
     app.post('/account/create', async (request, response) =>
     {
-        const {r_username, r_password} = request.query
+        const {r_username, r_password} = request.body;
+
+        if(r_username == null || r_password == null)
+        {
+            response.send("Invalid!");
+            return;
+        }
     
-        if(r_username == null)
+        if(r_username != null)
         {
             console.log("Account creation part");
 

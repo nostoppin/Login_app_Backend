@@ -36,7 +36,7 @@ public class LoginLink : MonoBehaviour
 
         StartCoroutine(m_create());
     }
-
+                                            //---LOG IN---//
     private IEnumerator m_logIn()
     {
         g_username = g_username_inputField.text;
@@ -84,11 +84,10 @@ public class LoginLink : MonoBehaviour
             if (request.downloadHandler.text != "invalid credentials")
             {
                 //print(UnityWebRequest.Get(g_username.ToString()));
-                g_loginButton.interactable = false;
+                m_buttonsAreActive_switch(false);
 
                 //convert JSON to utf8 readable
                 //AccountLink g_returnedAccount = JsonUtility.FromJson<AccountLink>(request.downloadHandler.text);
-
                 //g_alertText.text = $"{ g_returnedAccount._id } Welcome";
 
                 g_alertText.text = "Welcome " + g_username;
@@ -96,18 +95,20 @@ public class LoginLink : MonoBehaviour
             else
             {
                 g_alertText.text = "invalid credentials";
-                g_loginButton.interactable = true;
+                m_buttonsAreActive_switch(true);
             }
         }
         else
         {
             g_alertText.text = "Error connecting, please try again later.";
+
+            m_buttonsAreActive_switch(true);
         }
         //print(g_username+" "+g_password);
 
         yield return null;
     }
-
+                                    //---CREATE---//
     private IEnumerator m_create()
     {
         g_username = g_username_inputField.text;
@@ -150,22 +151,20 @@ public class LoginLink : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            if (request.downloadHandler.text != "invalid credentials")
+            if (request.downloadHandler.text != "invalid credentials" && request.downloadHandler.text != "Username already exists")
             {
                 //print(UnityWebRequest.Get(g_username.ToString()));
-                g_loginButton.interactable = false;
-
+                m_buttonsAreActive_switch(false);
                 //convert JSON to utf8 readable
                 //AccountLink g_returnedAccount = JsonUtility.FromJson<AccountLink>(request.downloadHandler.text);
 
                 //g_alertText.text = $"{ g_returnedAccount._id } Welcome";
 
-                g_alertText.text = "Welcome " + g_username;
+                g_alertText.text = "Welcome " + g_username + ", account created successfully";
             }
             else
             {
                 g_alertText.text = "invalid credentials";
-                g_loginButton.interactable = true;
             }
         }
         else
@@ -173,6 +172,7 @@ public class LoginLink : MonoBehaviour
             g_alertText.text = "Error connecting, please try again later.";
         }
         //print(g_username+" "+g_password);
+        m_buttonsAreActive_switch(true);
 
         yield return null;
     }
