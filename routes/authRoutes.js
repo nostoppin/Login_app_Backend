@@ -15,7 +15,7 @@ module.exports = app =>
             return;
         }
     
-        var userAccount = await account.findOne({username: r_username})
+        var userAccount = await account.findOne({username : r_username})
         
         if(userAccount != null)
         {
@@ -26,14 +26,14 @@ module.exports = app =>
     
                 //response.send("Authentication Success");
                 //send back to user_page (current)
-                response.send(userAccount + "Authentication Success");
+                response.send(userAccount + " Authentication Success");
                 return;
             }
         }
         response.send("invalid credentials");
         return;
     });
-
+//...................................................................
     app.post('/account/create', async (request, response) =>
     {
         const {r_username, r_password} = request.body;
@@ -63,7 +63,7 @@ module.exports = app =>
         }
         else
         {
-            response.send("Username already exists")
+            response.send("Username already exists");
         }
         return;
     });

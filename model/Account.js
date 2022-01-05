@@ -5,7 +5,7 @@ const accountSchema = new Schema
 ({
     username : String,
     password : String,
-    lastAuthDate : Date   
+    lastAuthDate : Date
 });
 
 mongoose.model('accounts', accountSchema);
